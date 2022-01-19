@@ -41,7 +41,7 @@ def main():
     Mdatas_results = analysis(data_results, scenarios, k_folds)
     Mdatas_results = pd.DataFrame(Mdatas_results)
     Mdatas_results.columns=['scenario','k-folds','mean Gridsearch','std Gridsearch','mean CV','std CV']            
-    Mdatas_results.to_excel('Analytics_KNN_V3_no_lactorraquia.xlsx') 
+    Mdatas_results.to_excel('Analytics_KNN.xlsx') 
 
     
     return Mdatas_results
