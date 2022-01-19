@@ -4,7 +4,7 @@ Created on Wed Dec 29 22:18:03 2021
 
 https://realpython.com/knn-python/
 https://www.askpython.com/python/examples/k-fold-cross-validation
-to do everything without special libraries: https://towardsdatascience.com/build-knn-from-scratch-python-7b714c47631a
+
 """
 import numpy as np
 import pandas as pd
@@ -32,8 +32,7 @@ def import_data(file, output):
     Mdata=pd.read_excel(file)
     output_index = Mdata.columns.get_loc(output)
     Mdata=Mdata.iloc[:,0:output_index+1]
-    Mdata=Mdata.drop(columns=["ID paciente ",'Lactatorraquia prequirúrgica (Lactato en LCR)','Lactatorraquia durante Ommaya'])
-    #Mdata=Mdata.drop(columns="ID paciente ")
+    Mdata=Mdata.drop(columns="ID paciente ")
     
     return Mdata
 
@@ -199,21 +198,17 @@ def outliers(data, cat_var): # not depurated function - Do not use
 
     
 ###############################################################################
-# var = ['ductus','Ritmo Extracción', 'Lactatorraquia prequirúrgica (Lactato en LCR)', 'Lactatorraquia durante Ommaya','DVP']
 
-# var_s4 = ['ductus','Ritmo Extracción', 'Lactatorraquia durante Ommaya','DVP']
+var = ['confidential']
 
-var = ['ductus','Ritmo Extracción','DVP']
-
-var_s4 = ['ductus','Ritmo Extracción','DVP']
+var_s4 = ['confidential']
 
 
 file = 'datos_V2.xls'
 
-categorical_var = ['Sexo', 'Grado Hemorragia Clasificación de Papile','Punciones lumbares','ductus',
-                   'Enterocolitis Necrotizante','sepsis','Mala respuesta ecográfica durante punciones']
+categorical_var = ['confidential']
 
-output_var = 'DVP'
+output_var = 'confidential'
 
 
 def main():
@@ -279,11 +274,10 @@ def main():
         
     data_results=pd.DataFrame(data_results)
     data_results.columns=['scenario','variables','K-folds','seed','Optimal K-neighbors','Gridsearch Acc','CV acc']
-    with pd.ExcelWriter('results_KNN_V3_no_lactorraquia.xlsx') as writer:  
+    with pd.ExcelWriter('results_KNN.xlsx') as writer:  
         data_results.to_excel(writer, sheet_name='results')
         corr.to_excel(writer, sheet_name='correlations')
-    # data_results.to_excel('results_KNN_V3_with_newVAR.xlsx', sheet_name='results') 
-    # corr.to_excel('results_KNN_V3_with_newVAR.xlsx', sheet_name='correlations')
+
            
     return data_results, corr
 
