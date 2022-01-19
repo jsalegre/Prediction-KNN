@@ -1,7 +1,7 @@
 # Prediction-KNN
-KNN for desease prediction based
+KNN for binary classification.
 
-Example of how to develop and optimize a KNN model for classifying patients.
+Example of how to develop and optimize a KNN model for classifying purposes.
 
 The script peforms a GridSearchCV to find the best K-Neighbors for a specific K-fold.
 
